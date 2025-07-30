@@ -467,11 +467,11 @@ export class Library {
 								_status.event._resultid = id;
 								game.resume();
 							};
-							"step 1";
+							("step 1");
 							var type = get.type2(card);
 							event.list = game.filterPlayer(current => current != player && current.countCards("h") && (_status.connectMode || current.hasCard(cardx => get.type2(cardx) == type, "h"))).sortBySeat(_status.currentPhase || player);
 							event.id = get.id();
-							"step 2";
+							("step 2");
 							if (!event.list.length) {
 								event.finish();
 							} else if (_status.connectMode && (event.list[0].isOnline() || event.list[0] == game.me)) {
@@ -479,7 +479,7 @@ export class Library {
 							} else {
 								event.send((event.current = event.list.shift()), event.card, player, trigger.targets, event.id, trigger.parent.id, trigger.yingbianZhuzhanAI);
 							}
-							"step 3";
+							("step 3");
 							if (result.bool) {
 								event.zhuzhanresult = event.current;
 								event.zhuzhanresult2 = result;
@@ -490,7 +490,7 @@ export class Library {
 							} else {
 								event.goto(2);
 							}
-							"step 4";
+							("step 4");
 							var id = event.id,
 								sendback = (result, player) => {
 									if (result && result.id == id && !event.zhuzhanresult && result.bool) {
@@ -537,20 +537,20 @@ export class Library {
 								});
 							}
 							event.withol = withol;
-							"step 5";
+							("step 5");
 							if (!result || !result.bool || event.zhuzhanresult) {
 								return;
 							}
 							game.broadcast("cancel", event.id);
 							event.zhuzhanresult = game.me;
 							event.zhuzhanresult2 = result;
-							"step 6";
+							("step 6");
 							if (event.withol && !event.resultOL) {
 								game.pause();
 							}
-							"step 7";
+							("step 7");
 							game.players.forEach(value => value.hideTimer());
-							"step 8";
+							("step 8");
 							if (event.zhuzhanresult) {
 								var target = event.zhuzhanresult;
 								target.line(player, "green");
@@ -2028,7 +2028,7 @@ export class Library {
 				},
 				image_background_blur: {
 					name: "背景模糊",
-					init: false,
+					init: true,
 					onclick(bool) {
 						game.saveConfig("image_background_blur", bool);
 						if (lib.config.image_background_blur) {
@@ -2085,7 +2085,7 @@ export class Library {
 				},
 				card_style: {
 					name: "卡牌样式",
-					init: "default",
+					init: "simple",
 					intro: "设置正面朝上的卡牌的样式",
 					item: {
 						wood: "木纹",
@@ -2223,7 +2223,7 @@ export class Library {
 				cardback_style: {
 					name: "卡背样式",
 					intro: "设置背面朝上的卡牌的样式",
-					init: "default",
+					init: "official",
 					item: {
 						// wood:'木纹',
 						// music:'音乐',
@@ -2399,7 +2399,7 @@ export class Library {
 				},
 				hp_style: {
 					name: "体力条样式",
-					init: "default",
+					init: "glass",
 					item: {
 						default: "默认",
 						// official:'勾玉',
@@ -2594,7 +2594,7 @@ export class Library {
 				},
 				player_style: {
 					name: "角色背景",
-					init: "default",
+					init: "simple",
 					intro: "设置角色的背景图片",
 					item: {
 						wood: "木纹",
@@ -2732,7 +2732,7 @@ export class Library {
 				zhishixian: {
 					name: "指示线",
 					intro: "设置卡牌、技能的指示特效",
-					init: "default",
+					init: "Mohua",
 					unfrequent: true,
 					item: {
 						default: "默认",
@@ -2763,7 +2763,7 @@ export class Library {
 				},
 				border_style: {
 					name: "角色边框",
-					init: "default",
+					init: "auto",
 					intro: "设置角色边框的样式，当设为自动时，样式将随着一局游戏中伤害或击杀的数量自动改变",
 					item: {
 						gold: "金框",
@@ -2920,7 +2920,7 @@ export class Library {
 				},
 				player_border: {
 					name: "边框宽度",
-					init: "normal",
+					init: "slim",
 					intro: "设置角色的边框宽度",
 					unfrequent: true,
 					item: {
@@ -2956,7 +2956,7 @@ export class Library {
 				},
 				menu_style: {
 					name: "菜单背景",
-					init: "default",
+					init: "simple",
 					item: {
 						wood: "木纹",
 						music: "音乐",
@@ -3092,7 +3092,7 @@ export class Library {
 				},
 				control_style: {
 					name: "按钮背景",
-					init: "default",
+					init: "simple",
 					item: {
 						wood: "木纹",
 						music: "音乐",
@@ -3402,7 +3402,7 @@ export class Library {
 				blur_ui: {
 					name: "模糊效果",
 					intro: "在暂停或打开菜单时开启模糊效果",
-					init: false,
+					init: true,
 					unfrequent: true,
 					onclick(bool) {
 						game.saveConfig("blur_ui", bool);
@@ -3416,7 +3416,7 @@ export class Library {
 				glass_ui: {
 					name: "玻璃主题",
 					intro: "为游戏主题打开玻璃效果（手机暂不支持）",
-					init: false,
+					init: true,
 					unfrequent: true,
 					onclick(bool) {
 						game.saveConfig("glass_ui", bool);
@@ -3447,13 +3447,13 @@ export class Library {
 				animation: {
 					name: "游戏特效",
 					intro: "开启后出现属性伤害、回复体力等情况时会显示动画",
-					init: false,
+					init: true,
 					unfrequent: true,
 				},
 				card_animation_info: {
 					name: "卡牌动画信息(Beta)",
 					intro: "开启后会在卡牌动画中显示一些信息来源并启用虚拟牌动画(Beta测试功能，如遇异常可关闭该功能)",
-					init: false,
+					init: true,
 					unfrequent: false,
 				},
 				skill_animation_type: {
@@ -3481,7 +3481,7 @@ export class Library {
 				target_shake: {
 					name: "目标效果",
 					intro: "一名玩家成为卡牌或技能的目标时的显示效果",
-					init: "off",
+					init: "zoom",
 					item: {
 						off: "关闭",
 						zoom: "缩放",
@@ -3545,7 +3545,7 @@ export class Library {
 				cardshape: {
 					name: "手牌显示",
 					intro: "将手牌设置为正方形或长方形",
-					init: "default",
+					init: "oblong",
 					unfrequent: true,
 					item: {
 						default: "默认",
@@ -7165,7 +7165,7 @@ export class Library {
 				},
 				wss_mode: {
 					name: "使用WSS协议",
-					init: false,
+					init: true,
 					intro: "在用户填写的IP地址没有直接指定使用WS/WSS协议的情况下，默认使用WSS协议，而非WS协议来连接到联机服务器。<br>请不要轻易勾选此项！",
 					onclick(bool) {
 						if (bool && !confirm("此为开发者选项，开启后将无法直接联机。您确定要开启WSS模式吗？")) {
@@ -12906,7 +12906,7 @@ export class Library {
 				"step 0";
 				player._groupChosen = "double";
 				player.chooseControl(get.is.double(player.name1, true)).set("prompt", "请选择你的势力");
-				"step 1";
+				("step 1");
 				player.changeGroup(result.control);
 			},
 		},
@@ -13483,7 +13483,7 @@ export class Library {
 			content: function () {
 				"step 0";
 				event.logvid = trigger.getLogv();
-				"step 1";
+				("step 1");
 				event.targets = game.filterPlayer(function (current) {
 					return current != event.player && current.isLinked();
 				});
@@ -13496,7 +13496,7 @@ export class Library {
 				} else {
 					event._args.push("nosource");
 				}
-				"step 2";
+				("step 2");
 				if (event.targets.length) {
 					var target = event.targets.shift();
 					if (target.isLinked()) {
