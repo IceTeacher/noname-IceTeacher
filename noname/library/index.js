@@ -39,7 +39,7 @@ export class Library {
 	updateURLS = updateURLs;
 	updateURL = updateURLs.github;
 	mirrorURL = updateURLs.coding;
-	hallURL = "";
+	hallURL = "wss://noname.server.rainafter.cn:443";
 	assetURL = assetURL;
 	userAgent = userAgentLowerCase;
 	characterDefaultPicturePath = characterDefaultPicturePath;
@@ -2223,7 +2223,7 @@ export class Library {
 				cardback_style: {
 					name: "卡背样式",
 					intro: "设置背面朝上的卡牌的样式",
-					init: "official",
+					init: "new",
 					item: {
 						// wood:'木纹',
 						// music:'音乐',
@@ -7176,7 +7176,7 @@ export class Library {
 				},
 				read_clipboard: {
 					name: "读取邀请链接",
-					init: true,
+					init: false,
 					frequent: true,
 					intro: "读取剪贴板以解析邀请链接自动加入联机房间",
 				},
